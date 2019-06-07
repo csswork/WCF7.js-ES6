@@ -1,0 +1,12 @@
+*.DS_Store
+*.htaccess
+*wp-config.php
+*config.codekit3
+.well-known/
+deploy.log
+.sass-cache/
+node_modules/
+*npm-debug.log
+*package-lock.json
+error_log
+.vscode/

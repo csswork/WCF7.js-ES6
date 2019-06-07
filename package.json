@@ -1,0 +1,38 @@
+{
+  "name": "WCF7",
+  "description": "A new project of Twelve",
+  "version": "0.0.1",
+  "author": "Haibo <ghbjy1128@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "./node_modules/.bin/npm-run-all --parallel dev:start dev:compass",
+    "dev:start": "cross-env NODE_ENV=development webpack-dev-server --hot",
+    "dev:compass": "gulp compass",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "velocity-animate": "^1.5.2",
+    "axios": "^0.18.0",
+    "jsonp": "^0.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-plugin-array-includes": "^2.0.3",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "cross-env": "^5.1.4",
+    "file-loader": "^1.1.11",
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-livereload": "3.8.1",
+    "node-sass": "^4.8.3",
+    "npm-run-all": "^4.1.2",
+    "sass-loader": "^6.0.7",
+    "expose-loader": "^0.7.5",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.5",
+    "terser-webpack-plugin": "^1.2.3"
+  }
+}
