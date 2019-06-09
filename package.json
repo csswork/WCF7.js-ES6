@@ -5,15 +5,12 @@
   "author": "Haibo <ghbjy1128@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "./node_modules/.bin/npm-run-all --parallel dev:start dev:compass",
+    "dev": "./node_modules/.bin/npm-run-all --parallel dev:start",
     "dev:start": "cross-env NODE_ENV=development webpack-dev-server --hot",
-    "dev:compass": "gulp compass",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "velocity-animate": "^1.5.2",
-    "axios": "^0.18.0",
-    "jsonp": "^0.2.1"
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

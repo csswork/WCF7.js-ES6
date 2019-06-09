@@ -1,13 +1,13 @@
 import axios from 'axios';
-import velocity from 'velocity-animate';
+// import velocity from 'velocity-animate';
 // import serialize from './FormSerialize';
 
 class Form {
-	constructor($form) {
+	constructor($el) {
 		this.version = '0.0.1';
-		this.$form = $form;
-		this.$response = this.$form.querySelector('.wpcf7-response-output');
-		this.form = this.$form.querySelector('form');
+		this.$el = $el;
+		this.$response = this.$el.querySelector('.wpcf7-response-output');
+		this.form = this.$el.querySelector('form');
 		this.id = this.getId();
 		this.api = window.globals.home_url + '/wp-json/contact-form-7/v1/contact-forms/' +this.id+ '/feedback';
 		this.$loading = document.createElement('div');
@@ -21,7 +21,7 @@ class Form {
 
 		self.$loading.className = 'loading';
 		self.$loading.innerHTML = '<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
-		self.$form.appendChild(self.$loading)
+		self.$el.appendChild(self.$loading)
 
 		self.form.addEventListener('submit', function(e) {
 			self.submit(e);
@@ -36,11 +36,12 @@ class Form {
 		let self = this;
 		let formData = new FormData(self.form);
 
-		self.$form.querySelectorAll('span.wpcf7-form-control-wrap').forEach(e => { 
+		self.$el.querySelectorAll('span.wpcf7-form-control-wrap').forEach(e => { 
 			e.classList.remove('error');
 		});
 
-		velocity(self.$loading, 'fadeIn', 100);
+		// velocity(self.$loading, 'fadeIn', 100);
+		self.$loading.style.display = 'block';
 
 		axios({
 				method: 'POST',
@@ -54,12 +55,11 @@ class Form {
 			})
 			.then(function (response) {
 				// handle success
-				// validation_failed
 				self.$response.innerHtml = response.data.message;
 				
 				if (response.data.status === 'validation_failed') {
 					response.data.invalidFields.forEach(item => {
-						let el = self.$form.querySelector(item.into);
+						let el = self.$el.querySelector(item.into);
 						el.classList.add('error');
 					});
 
@@ -72,11 +72,12 @@ class Form {
 				}
 
 				self.$response.innerHTML = response.data.message;
-				velocity(self.$loading, 'fadeOut', 100);
+				self.$loading.style.display = 'none';
+
 			})
 			.catch(function (response) {
 				// handle error
-				velocity(self.$loading, 'fadeOut', 100);
+				self.$loading.style.display = 'none';
 				console.log(response);
 			});
 
@@ -87,7 +88,7 @@ class Form {
 	 * Get form id
 	 */
 	getId() {
-		let input = this.$form.querySelector('input[name="_wpcf7"]');
+		let input = this.$el.querySelector('input[name="_wpcf7"]');
 		return parseInt( input.value, 10 );
 	};
 };

@@ -1,16 +1,16 @@
 var path = require('path')
 var webpack = require('webpack')
-var fs = require('fs')
 
 
 module.exports = {
   entry: {
-    main:'./script/main.js',
+    main:'./src/main.js',
   },
   output: {
-    path: path.resolve(__dirname, './script/build'),
-    publicPath: '/script/build/',
-    filename: '[name].min.js'
+    path: path.resolve(__dirname, './build'),
+    publicPath: '/build/',
+    filename: 'wpcf.min.js'
+    // filename: '[name].min.js'
   },
   module: {
 
@@ -71,30 +71,7 @@ module.exports = {
 // if (process.env.NODE_ENV === 'development') {
   
 // }
-fs.readFile('./functions.php', 'utf8', function(err, data) {
-  if (err) {
-    return console.log(err)
-  }
 
-  var oldPath
-    , newPath
-
-  if (process.env.NODE_ENV === 'development') {
-    oldPath = "get_stylesheet_directory_uri() . '/script/build/main.min.js'"
-    newPath = "'http://127.0.0.1:8080/script/build/main.min.js'"
-  } else if (process.env.NODE_ENV === 'production') {
-    oldPath = "'http://127.0.0.1:8080/script/build/main.min.js'"
-    newPath = "get_stylesheet_directory_uri() . '/script/build/main.min.js'"
-  }
-
-  var result = data.replace(oldPath, newPath)
-  fs.writeFile('./functions.php', result, 'utf8', function(err) {
-    if (err) {
-      return console.log(err)
-    }
-  })
-  
-})
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
