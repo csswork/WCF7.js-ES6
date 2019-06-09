@@ -3,13 +3,13 @@ import axios from 'axios';
 // import serialize from './FormSerialize';
 
 class Form {
-	constructor($el) {
+	constructor($el, homeUrl) {
 		this.version = '0.0.1';
 		this.$el = $el;
 		this.$response = this.$el.querySelector('.wpcf7-response-output');
 		this.form = this.$el.querySelector('form');
 		this.id = this.getId();
-		this.api = window.globals.home_url + '/wp-json/contact-form-7/v1/contact-forms/' +this.id+ '/feedback';
+		this.api = homeUrl + '/wp-json/contact-form-7/v1/contact-forms/' +this.id+ '/feedback';
 		this.$loading = document.createElement('div');
 	}
 
@@ -20,7 +20,7 @@ class Form {
 		let self = this;
 
 		self.$loading.className = 'loading';
-		self.$loading.innerHTML = '<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>';
+		self.$loading.innerHTML = '<div>Loading</div>';
 		self.$el.appendChild(self.$loading)
 
 		self.form.addEventListener('submit', function(e) {
