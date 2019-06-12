@@ -1,11 +1,27 @@
 {
-  "name": "WPCF.JS",
+  "name": "wpcf.js",
+  "keywords": [
+    "wordpress",
+    "contact form 7",
+    "ES6",
+    "javascript"
+  ],
   "description": "Use ES6 to implement the Ajax feature of Wordpress Contact form 7.",
   "version": "0.0.1",
   "author": "Haibo <ghbjy1128@gmail.com>",
-  "private": true,
+  "private": false,
+  "license": "ISC",
+  "main": "src/main.js",
+  "homepage": "https://github.com/csswork/wpcf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csswork/wpcf.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/csswork/wpcf.js/issues"
+  },
   "scripts": {
-    "dev": "./node_modules/.bin/npm-run-all --parallel dev:start",
+    "dev": "npm-run-all --parallel dev:start",
     "dev:start": "cross-env NODE_ENV=development webpack-dev-server --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
